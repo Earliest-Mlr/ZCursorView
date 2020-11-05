@@ -1,0 +1,2 @@
+rootProject.name='ZCursorView'
+include ':app'
