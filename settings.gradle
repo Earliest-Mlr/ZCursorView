@@ -1,2 +1,3 @@
 rootProject.name='ZCursorView'
 include ':app'
+include ':cursorview'
