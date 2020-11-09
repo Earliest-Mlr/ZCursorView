@@ -24,11 +24,13 @@ public class CursorView extends RelativeLayout {
     private int layoutWidth;
     private int index;
 
+    private Context mContext;
     private RelativeLayout rlLayout;
     private View vLint;
 
     public CursorView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mContext = context;
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs,
                 R.styleable.CursorView, 0, 0);
         cursorWidth = typedArray.getDimension(R.styleable.CursorView_cursor_width, 0);
@@ -41,10 +43,10 @@ public class CursorView extends RelativeLayout {
         rlLayout = findViewById(R.id.rl_layout);
         vLint = findViewById(R.id.v_lint);
 
-        initView(context);
+        initView();
     }
 
-    private void initView(Context context){
+    private void initView(){
         //设置光标宽高
         ViewGroup.LayoutParams cursorParams = vLint.getLayoutParams();
         cursorParams.width = (int) cursorWidth;
@@ -54,11 +56,19 @@ public class CursorView extends RelativeLayout {
         //设置光标背景色
         vLint.setBackgroundColor(cursorColor);
 
+        setCursorNumber(cursorNumber);
+    }
+
+    /**
+     * 设置光标数量
+     * @param number
+     */
+    public void setCursorNumber(int number){
         DisplayMetrics dm = new DisplayMetrics();
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         assert wm != null;
         wm.getDefaultDisplay().getMetrics(dm);//当前屏幕宽
-        layoutWidth = dm.widthPixels / cursorNumber;
+        layoutWidth = dm.widthPixels / number;
 
         //设置Layout宽
         ViewGroup.LayoutParams layoutParams = rlLayout.getLayoutParams();
