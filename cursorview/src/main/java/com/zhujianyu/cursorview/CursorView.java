@@ -36,7 +36,7 @@ public class CursorView extends RelativeLayout {
         cursorWidth = typedArray.getDimension(R.styleable.CursorView_cursor_width, 0);
         cursorHeight = typedArray.getDimension(R.styleable.CursorView_cursor_height, 0);
         cursorColor = typedArray.getColor(R.styleable.CursorView_cursor_color, 0);
-        cursorNumber = typedArray.getInteger(R.styleable.CursorView_cursor_number, 0);
+        cursorNumber = typedArray.getInteger(R.styleable.CursorView_cursor_number, 1);
         typedArray.recycle();
 
         LayoutInflater.from(context).inflate(R.layout.cursor_view, this);
